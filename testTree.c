@@ -79,20 +79,19 @@ int main(int argc, char * argv[]){
 	// not worrying about dictionary values...
 	Fast_Tree_Result fast_tree_result;
 
-	FastTreeSearchModifier search_mod = FAST_TREE_EQUAL_OR_PREV;
-
-	printf("Search Mod: %d", search_mod);
+	FastTreeSearchModifier search_mod = FAST_TREE_PREV;
 
 	ret = search_fast_tree(fast_tree, search_key, search_mod, &fast_tree_result);
 	if (ret){
-		fprintf(stderr, "Error: no keys matched the searched criteria: Search Key: %lu, Search Type: %s\n", search_key, search_type_to_str(search_mod));
-		return -1;
+		printf("\nNo Valid Search Result:\n\tSearch Key: %lu\n\tSearch Type: %s\n\n", search_key, search_type_to_str(search_mod));
 	}
-	search_result = fast_tree_result.key;
-	printf("\nSearch Result!:\n\tSearch Key: %lu\n\tSearch Type: %s\n\tSearch Result: %lu\n\n", search_key, search_type_to_str(search_mod), search_result);
+	else{
+		search_result = fast_tree_result.key;
+		printf("\nSearch Result!:\n\tSearch Key: %lu\n\tSearch Type: %s\n\tSearch Result: %lu\n\n", search_key, search_type_to_str(search_mod), search_result);
+	}
 
 
-	key_to_remove = 4;
+	key_to_remove = 3;
 	
 	printf("\nRemoving Key: %lu...\n", key_to_remove);
 	ret = remove_fast_tree(fast_tree, key_to_remove, NULL);
@@ -104,11 +103,13 @@ int main(int argc, char * argv[]){
 
 	ret = search_fast_tree(fast_tree, search_key, search_mod, &fast_tree_result);
 	if (ret){
-		fprintf(stderr, "Error: no keys matched the searched criteria: Search Key: %lu, Search Type: %s\n", search_key, search_type_to_str(search_mod));
-		return -1;
+		printf("\nNo Valid Search Result:\n\tSearch Key: %lu\n\tSearch Type: %s\n\n", search_key, search_type_to_str(search_mod));
 	}
-	search_result = fast_tree_result.key;
-	printf("\nSearch Result!:\n\tSearch Key: %lu\n\tSearch Type: %s\n\tSearch Result: %lu\n\n", search_key, search_type_to_str(search_mod), search_result);
+	else{
+		search_result = fast_tree_result.key;
+		printf("\nSearch Result!:\n\tSearch Key: %lu\n\tSearch Type: %s\n\tSearch Result: %lu\n\n", search_key, search_type_to_str(search_mod), search_result);
+	}
+
 
 
 	return 0;
