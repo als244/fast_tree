@@ -249,7 +249,6 @@ int main(int argc, char * argv[]){
   	int removal_pct = atoi(argv[5]);
   	int removal_exist_pct = atoi(argv[6]);
 
-
   	char * trace_base;
   	asprintf(&trace_base, "%lu_%lu_%d_%d_%d_%d", max_capacity, rand_seed, search_pct, search_prev_pct, removal_pct, removal_exist_pct);
 
@@ -318,15 +317,13 @@ int main(int argc, char * argv[]){
 
     int op_type;
   	for (uint64_t i = 0; i < num_ops; i++){
-  		
+
   		// for args 8192, 0, 90, 5, 5, 95 first error occurs when searching prev as op index 320
   		num_els[i] = fast_tree -> cnt;
-  		op_times[i] = do_operation(fast_tree, ops[i], operands[i], &op_results[i]);
-  		mem_usage[i] = get_memory_usage();
-  		total_time += op_times[i];
-  		max_mem = MY_MAX(max_mem, mem_usage[i]);
+
   		op_type = (int) ops[i];
-  		switch (op_type){
+  		
+		switch (op_type){
 		    case INSERT_OP:
 		      num_inserts++;
 		      break;
@@ -337,6 +334,12 @@ int main(int argc, char * argv[]){
 		      num_searches++;
 		      break; 
       	}
+
+  		op_times[i] = do_operation(fast_tree, ops[i], operands[i], &op_results[i]);
+  		mem_usage[i] = get_memory_usage();
+  		total_time += op_times[i];
+  		max_mem = MY_MAX(max_mem, mem_usage[i]);
+  		
   	}
 
 
