@@ -2,7 +2,7 @@ CC = gcc
 
 DEV_CFLAGS = -g -std=c99 -Wall -pedantic
 BUILD_CFLAGS = -O3 -march=native -std=c99 -Wall -pedantic
-CFLAGS = ${DEV_CFLAGS}
+CFLAGS = ${BUILD_CFLAGS}
 
 EXECS = testTree
 

@@ -1,6 +1,6 @@
 # Define variables for compiler, flags, and source files
 CXX = g++
-CXXFLAGS = -Wall -Wextra -g
+CXXFLAGS = -Wall -Wextra -O3
 SRCS = testSet.cpp
 
 # Define the target executable
